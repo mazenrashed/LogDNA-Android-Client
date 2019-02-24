@@ -41,4 +41,9 @@ LogDna.log(
 )
 ```
 
-
+### Listen to your logs
+```kotlin
+LogDna.logResults.subscribe {  logResult ->
+  Log.d("LogDna", "${logResult.isSuccessful}, ${logResult.message}, ${logResult.logRequest.uid}")  
+}
+```
