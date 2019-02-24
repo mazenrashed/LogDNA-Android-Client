@@ -35,13 +35,30 @@ LogDna.log(
         Line.Builder().setLine("Some Test")  
                 .addCustomField(Line.CustomField("fName", "mazen"))  
                 .addCustomField(Line.CustomField("lName", "rashed"))  
+		.addCustomField(Line.CustomField("age", 25))
                 .setLevel(Line.LEVEL_DEBUG)  
                 .setTime(System.currentTimeMillis())  
                 .build()  
 )
 ```
 
-### Listen to your logs
+## Listen to your logs
+
+### Using callback
+```kotlin
+LogDna.logResultsListener = { logResult ->  
+  Log.d("LogDna", "${logResult.isSuccessful}, ${logResult.message}, ${logResult.logRequest.uid}")  
+}
+```
+### Using RxJava / RxKotlin
+
+ Add  **[RxRelay](https://github.com/JakeWharton/RxRelay)** dependency
+```groovy
+dependencies {
+	implementation 'com.jakewharton.rxrelay2:rxrelay:2.1.0'
+}
+```
+Then subscribe to logResults
 ```kotlin
 LogDna.logResults.subscribe {  logResult ->
   Log.d("LogDna", "${logResult.isSuccessful}, ${logResult.message}, ${logResult.logRequest.uid}")  
