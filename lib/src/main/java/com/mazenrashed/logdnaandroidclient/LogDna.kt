@@ -18,6 +18,7 @@ object LogDna {
     private var apiKey: String? = null
     var appName: String? = null
     var logResults = PublishRelay.create<LogResult>()
+    var logResultsListener: ((LogResult) -> Unit)? = null
 
     fun init(apiKey: String, appName: String?) {
         this.apiKey = apiKey
@@ -40,10 +41,16 @@ object LogDna {
                         )
                         .subscribeOn(Schedulers.io())
                         .subscribe({
-                            logResults.accept(LogResult(it.isSuccessful,
+                            val logResult = LogResult(
+                                    it.isSuccessful,
                                     if (it.isSuccessful) it.body()?.status!! else it.errorBody()?.string()!!,
                                     Gson().fromJson(LibUtils.bodyToString(it.raw().request().body()), LogRequest::class.java)
-                            ))
+                            )
+
+                            if (logResults.hasObservers())
+                                logResults.accept(logResult)
+                            logResultsListener?.invoke(logResult)
+
                             disposable.dispose()
                         }, {
                             it.printStackTrace()
@@ -68,10 +75,16 @@ object LogDna {
                         )
                         .subscribeOn(Schedulers.io())
                         .subscribe({
-                            logResults.accept(LogResult(it.isSuccessful,
+                            val logResult = LogResult(
+                                    it.isSuccessful,
                                     if (it.isSuccessful) it.body()?.status!! else it.errorBody()?.string()!!,
                                     Gson().fromJson(LibUtils.bodyToString(it.raw().request().body()), LogRequest::class.java)
-                            ))
+                            )
+
+                            if (logResults.hasObservers())
+                                logResults.accept(logResult)
+                            logResultsListener?.invoke(logResult)
+
                             disposable.dispose()
                         }, {
                             it.printStackTrace()
