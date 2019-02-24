@@ -35,6 +35,7 @@ LogDna.log(
         Line.Builder().setLine("Some Test")  
                 .addCustomField(Line.CustomField("fName", "mazen"))  
                 .addCustomField(Line.CustomField("lName", "rashed"))  
+		.addCustomField(Line.CustomField("age", 25))
                 .setLevel(Line.LEVEL_DEBUG)  
                 .setTime(System.currentTimeMillis())  
                 .build()  
