@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import com.mazenrashed.logdnaandroidclient.models.Line
 import io.reactivex.disposables.CompositeDisposable
+import kotlinx.android.synthetic.main.activity_main.*
 
 
 class MainActivity : AppCompatActivity() {
@@ -17,20 +18,27 @@ class MainActivity : AppCompatActivity() {
 
         LogDna.init(LOG_DNA_API_KEY, APP_NAME)
 
-        LogDna.log(
-                Line.Builder().setLine("Some Test")
-                        .addCustomField(Line.CustomField("fName", "mazen"))
-                        .addCustomField(Line.CustomField("lName", "rashed"))
-                        .setLevel(Line.LEVEL_DEBUG)
-                        .setTime(System.currentTimeMillis())
-                        .build()
-        )
+        testLog.setOnClickListener {
+            LogDna.log(
+                    Line.Builder().setLine("Some Test")
+                            .addCustomField(Line.CustomField("fName", "mazen"))
+                            .addCustomField(Line.CustomField("lName", "rashed"))
+                            .addCustomField(Line.CustomField("age", 25))
+                            .setLevel(Line.LEVEL_DEBUG)
+                            .setTime(System.currentTimeMillis())
+                            .build()
+            )
+        }
 
         bag.add(
-                LogDna.logResults.subscribe {
-                    Log.d("LogDna", "${it.isSuccessful}, ${it.message}, ${it.logRequest.uid}")
+                LogDna.logResults.subscribe { logResult ->
+                    Log.d("LogDna", "${logResult.isSuccessful}, ${logResult.message}, ${logResult.logRequest.uid}")
                 }
         )
+
+        LogDna.logResultsListener = { logResult ->
+            Log.d("LogDna", "${logResult.isSuccessful}, ${logResult.message}, ${logResult.logRequest.uid}")
+        }
 
     }
 
