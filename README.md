@@ -41,7 +41,23 @@ LogDna.log(
 )
 ```
 
-### Listen to your logs
+## Listen to your logs
+
+### Using callback
+```kotlin
+LogDna.logResultsListener = { logResult ->  
+  Log.d("LogDna", "${logResult.isSuccessful}, ${logResult.message}, ${logResult.logRequest.uid}")  
+}
+```
+### Using RxJava / RxKotlin
+
+ Add  **[RxRelay](https://github.com/JakeWharton/RxRelay)** dependency
+```groovy
+dependencies {
+	implementation 'com.jakewharton.rxrelay2:rxrelay:2.1.0'
+}
+```
+Then subscribe to logResults
 ```kotlin
 LogDna.logResults.subscribe {  logResult ->
   Log.d("LogDna", "${logResult.isSuccessful}, ${logResult.message}, ${logResult.logRequest.uid}")  
