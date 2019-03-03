@@ -3,6 +3,7 @@
 Android client for LogDNA
 
 [![](https://jitpack.io/v/mazenrashed/LogDNA-Android-Client.svg)](https://jitpack.io/#mazenrashed/LogDNA-Android-Client)
+[![Android Arsenal]( https://img.shields.io/badge/Android%20Arsenal-Mazen%20Rashed-green.svg?style=flat )]( https://android-arsenal.com/details/1/7545 )
 
 ###  Add the JitPack repository to your build file
 ```groovy
