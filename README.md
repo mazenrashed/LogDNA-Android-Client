@@ -65,3 +65,7 @@ LogDna.logResults.subscribe {  logResult ->
   Log.d("LogDna", "${logResult.isSuccessful}, ${logResult.message}, ${logResult.logRequest.uid}")  
 }
 ```
+## Contributing
+
+We welcome contributions to LogDNA Android Client !
+* ⇄ Pull requests and ★ Stars are always welcome.
