@@ -69,3 +69,8 @@ LogDna.logResults.subscribe {  logResult ->
 
 We welcome contributions to LogDNA Android Client !
 * ⇄ Pull requests and ★ Stars are always welcome.
+
+## Already used by :
+
+![Cat® App: Fleet Management](https://lh3.googleusercontent.com/yhpI5MrMIQI3A6tTlzTUG-lKbT6PVE3WyU1XJV3IFta51GGMFGG-52Zo2FxiMuLg9g=s180)
+### [Cat® App: Fleet Management](https://play.google.com/store/apps/details?id=com.cat.corelink&hl=en_AU)
