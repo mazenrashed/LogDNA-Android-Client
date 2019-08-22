@@ -34,7 +34,7 @@ object LogDna {
                 ServiceGenerator
                         .restService
                         .log(
-                                hostName,
+                                line.host?: hostName,
                                 System.currentTimeMillis() / 1000,
                                 apiKey ?: error("You must call LogDna.init()"),
                                 logRequest
@@ -68,7 +68,7 @@ object LogDna {
                 ServiceGenerator
                         .restService
                         .log(
-                                hostName,
+                                lines.firstOrNull{ item -> item.host?.isNotBlank()?:false}?.host ?: hostName,
                                 System.currentTimeMillis() / 1000,
                                 apiKey ?: error("You must call LogDna.init()"),
                                 logRequest

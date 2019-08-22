@@ -7,7 +7,8 @@ class Line private constructor(
         @SerializedName("level") var level: String,
         @SerializedName("line") var line: String,
         @SerializedName("meta") var meta: HashMap<String, Any>?,
-        @SerializedName("timestamp") var timestamp: Long
+        @SerializedName("timestamp") var timestamp: Long,
+        @SerializedName("host") var host: String?
 ) {
 
     @SerializedName("app")
@@ -23,6 +24,13 @@ class Line private constructor(
         private var meta: HashMap<String, Any>? = null
         @SerializedName("timestamp")
         private var timestamp: Long = System.currentTimeMillis() / 1000
+        @SerializedName("host")
+        private var host: String? = null
+
+        fun setHost(host: String): Builder {
+            this.host = host
+            return this
+        }
 
         fun setLevel(level: String): Builder {
             this.level = level
@@ -47,7 +55,7 @@ class Line private constructor(
         }
 
         fun build(): Line =
-                Line(level, line, meta, timestamp)
+                Line(level, line, meta, timestamp, host)
 
     }
 
