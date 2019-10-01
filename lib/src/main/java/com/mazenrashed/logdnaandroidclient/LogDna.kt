@@ -14,15 +14,16 @@ import kotlin.collections.ArrayList
 
 object LogDna {
 
-    private const val hostName = "Android App"
+    private var hostName = "Android App"
     private var apiKey: String? = null
     var appName: String? = null
     var logResults = PublishRelay.create<LogResult>()
     var logResultsListener: ((LogResult) -> Unit)? = null
 
-    fun init(apiKey: String, appName: String?) {
+    fun init(apiKey: String, appName: String?, hostName: String?) {
         this.apiKey = apiKey
         this.appName = appName
+        hostName?.let{ this.hostName = it }
     }
 
     fun log(line: Line) {
