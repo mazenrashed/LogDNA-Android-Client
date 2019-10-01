@@ -28,7 +28,7 @@ dependencies {
 ### Initialize LogDNA
 Should be initialized once in `Application.onCreate()`:
 ```kotlin
-LogDna.init(LOG_DNA_API_KEY, APP_NAME)
+LogDna.init(LOG_DNA_API_KEY, APP_NAME, HOST_NAME)
 ```
 ### Start Logging
 ```kotlin
